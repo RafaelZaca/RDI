@@ -15,49 +15,64 @@ namespace RDI.Services
         List<Service1Class> lstUsers = new List<Service1Class>();
         public Service1ClassResponse Service1(int IdCliente, long NrCard, int CVV)
         {
-            Service1Class item = new Service1Class
+            try
             {
-                IdCliente = IdCliente,
-                NrCard = NrCard,
-                IDCard = lstUsers.Count + 1,
-                CVV = CVV
-                
-            };
-            item.CriaToken();
-            lstUsers.Add(item);
+                Service1Class item = new Service1Class
+                {
+                    IdCliente = IdCliente,
+                    NrCard = NrCard,
+                    IDCard = lstUsers.Count + 1,
+                    CVV = CVV
 
-            return new Service1ClassResponse {
-                DataRegsitro = item.DataRegsitro,
-                IDCard = item.IDCard,
-                Token = item.Token
-            };
+                };
+                item.CriaToken();
+                lstUsers.Add(item);
+
+                return new Service1ClassResponse
+                {
+                    DataRegsitro = item.DataRegsitro,
+                    IDCard = item.IDCard,
+                    Token = item.Token
+                };
+            }
+            catch
+            {
+                return null;
+            }
 
         }
 
         public bool Service2(int IdCliente, int IdCard, long Token, int CVV)
         {
-            bool tempoValido = false;
-            bool UserValido = false;
-            foreach(Service1Class item in lstUsers)
+            try
             {
-                if (item.IDCard == IdCard)
+                bool tempoValido = false;
+                bool UserValido = false;
+                foreach (Service1Class item in lstUsers)
                 {
-                    if(item.DataRegsitro > DateTime.Now.AddMinutes(-30))
+                    if (item.IDCard == IdCard)
                     {
-                        tempoValido = true;
-                    }
-                    if(IdCliente == item.IdCliente)
-                    {
-                        UserValido = true;
-                    }
+                        if (item.DataRegsitro > DateTime.Now.AddMinutes(-30))
+                        {
+                            tempoValido = true;
+                        }
+                        if (IdCliente == item.IdCliente)
+                        {
+                            UserValido = true;
+                        }
 
+                    }
+                    if (tempoValido && UserValido && item.ConfereToken(item.NrCard, Token))
+                    {
+                        return true;
+                    }
                 }
-                if (tempoValido && UserValido && item.ConfereToken(item.NrCard,Token))
-                {
-                    return true;
-                }
+                return false;
             }
-            return false;
+            catch
+            {
+                return false;
+            }
         }
 
         public string teste()
