@@ -51,7 +51,7 @@ namespace RDI
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-            app.UseSoapEndpoint<IService>("/Services.asmx", new BasicHttpBinding());
+            app.UseSoapEndpoint<IService>("/Services.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

@@ -12,7 +12,7 @@ namespace RDI.Services
 {
     public class Service : IService
     {
-        List<Service1Class> lstUsers = new List<Service1Class>();
+        static List<Service1Class> lstUsers = new List<Service1Class>();
         public Service1ClassResponse Service1(int IdCliente, long NrCard, int CVV)
         {
             try
@@ -28,12 +28,13 @@ namespace RDI.Services
                 item.CriaToken();
                 lstUsers.Add(item);
 
-                return new Service1ClassResponse
+                Service1ClassResponse ret = new Service1ClassResponse
                 {
                     DataRegsitro = item.DataRegsitro,
                     IDCard = item.IDCard,
                     Token = item.Token
                 };
+                return ret;
             }
             catch
             {

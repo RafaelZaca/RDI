@@ -12116,11 +12116,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Zaca\\source\\repos\\RDI\\RDI\\RDI.csproj",
+      "projectUniqueName": "C:\\Users\\Zaca\\Documents\\GitHub\\RDI\\RDI\\RDI.csproj",
       "projectName": "RDI",
-      "projectPath": "C:\\Users\\Zaca\\source\\repos\\RDI\\RDI\\RDI.csproj",
+      "projectPath": "C:\\Users\\Zaca\\Documents\\GitHub\\RDI\\RDI\\RDI.csproj",
       "packagesPath": "C:\\Users\\Zaca\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Zaca\\source\\repos\\RDI\\RDI\\obj\\",
+      "outputPath": "C:\\Users\\Zaca\\Documents\\GitHub\\RDI\\RDI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
